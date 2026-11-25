@@ -53,8 +53,7 @@ export const site = {
   },
 
   contact: {
-    // TODO: email reale
-    email: "ciao@orma.studio",
+    email: "info.ormadigitalstudio@gmail.com",
     // WhatsApp per ora non attivo: vuoto = nascosto ovunque (header, footer, contatti, JSON-LD).
     // Per attivarlo: numero in formato internazionale senza "+" e senza spazi, e whatsappLabel leggibile.
     whatsapp: "",
