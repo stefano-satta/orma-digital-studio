@@ -5,13 +5,31 @@
  * prima della pubblicazione (cerca "TODO" in questo file).
  */
 
+const DEFAULT_SITE_URL = "https://www.orma.studio";
+
+/**
+ * Origine del sito da NEXT_PUBLIC_SITE_URL, senza slash finale.
+ * Variabile assente o vuota → dominio predefinito; senza protocollo → https://.
+ * Un valore non valido ferma la build con un messaggio chiaro.
+ */
+function resolveSiteUrl(rawValue: string | undefined): string {
+  const value = rawValue?.trim();
+  if (!value) return DEFAULT_SITE_URL;
+  const withProtocol = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    throw new Error(`NEXT_PUBLIC_SITE_URL non è un indirizzo valido: "${value}". Esempio corretto: ${DEFAULT_SITE_URL}`);
+  }
+}
+
 export const site = {
   name: "ORMA",
   descriptor: "Digital & Visual Studio",
   tagline: "Studio creativo indipendente per l'hospitality",
   payoff: "Il segno che resta.",
   // TODO: dominio definitivo (usato per canonical, sitemap, Open Graph, JSON-LD)
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.orma.studio",
+  url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   locale: "it_IT",
   region: "Sardegna, Italia",
 
