@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
-import { Header } from "@/components/common/Header";
-import { Footer } from "@/components/common/Footer";
 import { MotionProvider } from "@/components/common/motion/primitives";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -60,11 +58,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it" className={`${serifFont.variable} ${sansFont.variable}`} data-scroll-behavior="smooth">
       <body id="top">
-        <MotionProvider>
-          <Header />
-          <main id="contenuto">{children}</main>
-          <Footer />
-        </MotionProvider>
+        {/* Header e footer stanno in app/(site)/layout.tsx: la 404 (app/not-found.tsx) resta fuori dal sito. */}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

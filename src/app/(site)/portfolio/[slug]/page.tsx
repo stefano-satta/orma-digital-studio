@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { getProject, projects } from "@/content/portfolio";
 import { site } from "@/content/site";
 import { JsonLd } from "@/components/common/JsonLd";
@@ -40,15 +39,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  return (
-    <Suspense fallback={<div className="min-h-[92svh] bg-forest-deep" aria-hidden="true" />}>
-      <ProjectContent params={params} />
-    </Suspense>
-  );
-}
-
-async function ProjectContent({ params }: { params: ProjectPageProps["params"] }) {
+// params atteso fuori da <Suspense>: con generateStaticParams i progetti noti sono statici e uno slug
+// sconosciuto chiama notFound() prima dello streaming, quindi risponde 404 con la pagina app/not-found.tsx.
+export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
