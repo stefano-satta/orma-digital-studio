@@ -5,7 +5,8 @@
  * prima della pubblicazione (cerca "TODO" in questo file).
  */
 
-const DEFAULT_SITE_URL = "https://www.orma.studio";
+// Per ora il sito vive su Netlify: quando arriva il dominio, cambiare qui (o impostare NEXT_PUBLIC_SITE_URL).
+const DEFAULT_SITE_URL = "https://orma-digital-studio.netlify.app";
 
 /**
  * Origine del sito da NEXT_PUBLIC_SITE_URL, senza slash finale.
