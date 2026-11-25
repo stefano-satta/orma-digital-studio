@@ -19,7 +19,7 @@ export function serviceMetadata(servicePage: ServicePageContent): Metadata {
       title: `${servicePage.metaTitle} · ${site.name}`,
       description: servicePage.metaDescription,
       // Definire openGraph nella pagina sostituisce quello della root: l'immagine OG va ripetuta qui.
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${servicePage.h1}` }],
+      images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630, alt: `${site.name}: ${servicePage.h1}` }],
     },
   };
 }
